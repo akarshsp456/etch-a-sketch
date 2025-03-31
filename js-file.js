@@ -1,5 +1,12 @@
 const container = document.querySelector("#container");
 const restart = document.querySelector(".restart"); // Move outside to avoid multiple bindings
+function getRandomRGBColor(){
+    let r= Math.floor(Math.random() * 256);
+    let g= Math.floor(Math.random() * 256);
+    let b= Math.floor(Math.random() * 256);
+    return `rgb(${r},${g},${b})`;
+
+}
 
 function makeGrid(num = 16) {
     container.innerHTML = ''; // Clear container first
@@ -14,10 +21,13 @@ function makeGrid(num = 16) {
         square.style.height = size + "px";
         square.style.border = "solid black 1px";
         square.style.boxSizing = "border-box";
+        let hasChanged = false;
 
         square.addEventListener("mouseover", () => {
-            console.log("yes");
-            square.style.backgroundColor = "black";
+            if(!hasChanged){
+            square.style.backgroundColor = getRandomRGBColor();
+            hasChanged = true;
+            }
         });
 
         container.appendChild(square);
