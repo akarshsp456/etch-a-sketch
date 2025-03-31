@@ -1,5 +1,5 @@
 
-let num = 16;
+let num = 32;
 
 const container = document.querySelector("#container");
 let square = new Array(num);
@@ -18,3 +18,7 @@ for(let i=0; i<num*num; i++){
 }
 
 
+square.forEach(singleSquare => {singleSquare.addEventListener("mouseover", () => {
+    console.log("yes");
+    singleSquare.style.backgroundColor = "black";
+})})
