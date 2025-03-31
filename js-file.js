@@ -1,24 +1,43 @@
-
-let num = 32;
-
 const container = document.querySelector("#container");
-let square = new Array(num);
-let size = 700/num;
+const restart = document.querySelector(".restart"); // Move outside to avoid multiple bindings
 
-for(let i=0; i<num*num; i++){
-    square[i] = document.createElement("div");
-    square[i].classList.add("square");
+function makeGrid(num = 16) {
+    container.innerHTML = ''; // Clear container first
 
-    square[i].style.width = size + "px";
-    square[i].style.height = size + "px";
-    square[i].style.border = "solid black 1px";
-    square[i].style.boxSizing = "border-box";
+    let size = 700 / num;
 
-    container.appendChild(square[i]);
+    for (let i = 0; i < num * num; i++) {
+        let square = document.createElement("div");
+        square.classList.add("square");
+
+        square.style.width = size + "px";
+        square.style.height = size + "px";
+        square.style.border = "solid black 1px";
+        square.style.boxSizing = "border-box";
+
+        square.addEventListener("mouseover", () => {
+            console.log("yes");
+            square.style.backgroundColor = "black";
+        });
+
+        container.appendChild(square);
+    }
 }
 
+// Attach event listener once
+restart.addEventListener("click", () => {
+    let inpNum = prompt("How many grids do you need?");
+    inpNum = parseInt(inpNum);
 
-square.forEach(singleSquare => {singleSquare.addEventListener("mouseover", () => {
-    console.log("yes");
-    singleSquare.style.backgroundColor = "black";
-})})
+    if (!inpNum || inpNum <= 0) {
+        alert("Please enter a valid number greater than 0.");
+        return;
+    }
+
+    makeGrid(inpNum);
+});
+
+makeGrid();
+
+
+

@@ -5,6 +5,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 #container {
@@ -12,6 +13,6 @@ body {
     flex-wrap: wrap;
     height: 700px;
     width: 700px;
-    background-color: aqua;
+    margin-top: 30px;
 }
 
